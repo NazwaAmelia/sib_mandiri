@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menghitung Luas Persegi Panjang dan Lingkaran</title>
+    <script src="script.js" defer></script>
+    <!-- Menghubungkan dengan file JavaScript -->
+  </head>
+  <body>
+    <h1>Menghitung Luas Persegi Panjang dan Lingkaran</h1>
+
+    <!-- Form untuk input panjang dan lebar persegi panjang -->
+    <h2>Persegi Panjang</h2>
+    <label for="panjang">Panjang: </label>
+    <input type="number" id="panjang" placeholder="Masukkan panjang" /><br />
+    <label for="lebar">Lebar: </label>
+    <input type="number" id="lebar" placeholder="Masukkan lebar" /><br />
+    <button onclick="hitungPersegiPanjang()">
+      Hitung Luas Persegi Panjang
+    </button>
+    <p id="hasilPersegiPanjang"></p>
+
+    <!-- Form untuk input jari-jari lingkaran -->
+    <h2>Lingkaran</h2>
+    <label for="jariJari">Jari-Jari: </label>
+    <input type="number" id="jariJari" placeholder="Masukkan jari-jari" /><br />
+    <button onclick="hitungLingkaran()">Hitung Luas Lingkaran</button>
+    <p id="hasilLingkaran"></p>
+  </body>
+</html>
