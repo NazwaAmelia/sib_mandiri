@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  background-color: #a2d2ff;
+  color: #f3f3f2;
+  text-align: center;
+  padding: 1rem;
+}
+
+nav {
+  background-color: #9acdfd;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #faf8f5;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+nav ul li a:hover {
+  background-color: #555;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap; /* Agar konten dapat berbaris jika diperlukan */
+}
+
+.content {
+  flex: 1 1 30%; /* Memungkinkan 3 kolom */
+  margin: 10px; /* Jarak antar konten */
+  padding: 1rem;
+  background-color: #bce0ff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+}
+
+.main-content {
+  flex: 2; /* Memberikan lebih banyak ruang untuk konten utama */
+  background-color: #93cafa; /* Memberikan warna berbeda untuk konten utama */
+}
+
+footer {
+  background-color: #62aff3;
+  color: rgb(14, 13, 13);
+  text-align: center;
+  padding: 1rem;
+}
