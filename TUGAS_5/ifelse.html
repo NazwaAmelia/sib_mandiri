@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perhitungan Gaji Bersih (If-Else)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      label,
+      input,
+      select,
+      button {
+        margin-top: 10px;
+        display: block;
+      }
+      button {
+        padding: 8px;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Perhitungan Gaji Bersih Pegawai (If-Else)</h2>
+
+    <!-- Form input untuk golongan dan status pernikahan -->
+    <label for="golongan">Golongan (1/2/3):</label>
+    <input
+      type="number"
+      id="golongan"
+      placeholder="Masukkan golongan"
+      min="1"
+      max="3"
+    /><br />
+
+    <label for="status">Status Pernikahan:</label>
+    <select id="status">
+      <option value="Belum Menikah">Belum Menikah</option>
+      <option value="Menikah">Menikah</option></select
+    ><br />
+
+    <!-- Tombol untuk menghitung gaji dengan if-else -->
+    <button onclick="hitungGajiIfElse()">Hitung Gaji (If-Else)</button>
+
+    <!-- Area untuk menampilkan hasil perhitungan -->
+    <p id="hasil"></p>
+
+    <script src="gaji.js"></script>
+  </body>
+</html>
