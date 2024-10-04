@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Siswa</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #639aec;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Data Siswa</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>Nilai</th>
+          <th>Keterangan</th>
+          <th>Grade</th>
+          <th>Predikat</th>
+        </tr>
+      </thead>
+      <tbody id="dataSiswa">
+        <!-- Data akan diisi oleh JavaScript -->
+      </tbody>
+    </table>
+
+    <!-- Menghubungkan file JavaScript -->
+    <script src="siswa.js"></script>
+  </body>
+</html>
