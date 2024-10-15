@@ -1,0 +1,85 @@
+/* Membuka MySQL Shell dan Masuk ke Database */
+MariaDB [sib7]> CREATE DATABASE toko_online;
+Query OK, 1 row affected (0.028 sec)
+
+MariaDB [sib7]> USE toko_online;
+Database changed
+MariaDB [toko_online]> CREATE TABLE vendor (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     nomor VARCHAR(10) NOT NULL,
+    ->     nama VARCHAR(50) NOT NULL,
+    ->     kode VARCHAR(10) NOT NULL,
+    ->     alamat TEXT,
+    ->     kontak VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.050 sec)
+
+MariaDB [toko_online]> CREATE TABLE pembelian (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     tanggal DATE NOT NULL,
+    ->     nomor VARCHAR(15) NOT NULL,
+    ->     produk_id INT NOT NULL,
+    ->     jumlah INT NOT NULL,
+    ->     harga DECIMAL(10, 2) NOT NULL,
+    ->     vendor_id INT,
+    ->     FOREIGN KEY (vendor_id) REFERENCES vendor(id)
+    -> );
+Query OK, 0 rows affected (0.090 sec)
+
+MariaDB [toko_online]> INSERT INTO vendor (nomor, nama, kode, alamat, kontak) VALUES
+    -> ('V001', 'Vendor A', 'A001', 'Jl. Mawar No. 12', '081234567890'),
+
+    -> ('V002', 'Vendor B', 'B002', 'Jl. Melati No. 45', '082134567891'),
+    -> ('V003', 'Vendor C', 'C003', 'Jl. Anggrek No. 78', '083134567892'),
+    -> ('V004', 'Vendor D', 'D004', 'Jl. Kamboja No. 90', '084134567893'),
+    -> ('V005', 'Vendor E', 'E005', 'Jl. Tulip No. 101', '085134567894');
+Query OK, 5 rows affected (0.693 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [toko_online]> INSERT INTO pembelian (tanggal, nomor, produk_id, jumlah, harga, vendor_id) VALUES
+    -> ('2024-10-01', 'P001', 101, 10, 50000.00, 1),
+    -> ('2024-10-02', 'P002', 102, 5, 75000.00, 2),
+    -> ('2024-10-03', 'P003', 103, 20, 120000.00, 3),
+    -> ('2024-10-04', 'P004', 104, 8, 30000.00, 4),
+    -> ('2024-10-05', 'P005', 105, 15, 45000.00, 5);
+Query OK, 5 rows affected (0.445 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [toko_online]> show tabel pembelian
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'tabel pembelian' at line 1
+MariaDB [toko_online]> SELECT * FROM vendor;
++----+-------+----------+------+--------------------+--------------+
+| id | nomor | nama     | kode | alamat             | kontak       |
++----+-------+----------+------+--------------------+--------------+
+|  1 | V001  | Vendor A | A001 | Jl. Mawar No. 12   | 081234567890 |
+|  2 | V002  | Vendor B | B002 | Jl. Melati No. 45  | 082134567891 |
+|  3 | V003  | Vendor C | C003 | Jl. Anggrek No. 78 | 083134567892 |
+|  4 | V004  | Vendor D | D004 | Jl. Kamboja No. 90 | 084134567893 |
+|  5 | V005  | Vendor E | E005 | Jl. Tulip No. 101  | 085134567894 |
++----+-------+----------+------+--------------------+--------------+
+5 rows in set (0.038 sec)
+
+MariaDB [toko_online]> SELECT * FROM vendor;
++----+-------+----------+------+--------------------+--------------+
+| id | nomor | nama     | kode | alamat             | kontak       |
++----+-------+----------+------+--------------------+--------------+
+|  1 | V001  | Vendor A | A001 | Jl. Mawar No. 12   | 081234567890 |
+|  2 | V002  | Vendor B | B002 | Jl. Melati No. 45  | 082134567891 |
+|  3 | V003  | Vendor C | C003 | Jl. Anggrek No. 78 | 083134567892 |
+|  4 | V004  | Vendor D | D004 | Jl. Kamboja No. 90 | 084134567893 |
+|  5 | V005  | Vendor E | E005 | Jl. Tulip No. 101  | 085134567894 |
++----+-------+----------+------+--------------------+--------------+
+5 rows in set (0.014 sec)
+
+MariaDB [toko_online]> SELECT * FROM pembelian;
++----+------------+-------+-----------+--------+-----------+-----------+
+| id | tanggal    | nomor | produk_id | jumlah | harga     | vendor_id |
++----+------------+-------+-----------+--------+-----------+-----------+
+|  1 | 2024-10-01 | P001  |       101 |     10 |  50000.00 |         1 |
+|  2 | 2024-10-02 | P002  |       102 |      5 |  75000.00 |         2 |
+|  3 | 2024-10-03 | P003  |       103 |     20 | 120000.00 |         3 |
+|  4 | 2024-10-04 | P004  |       104 |      8 |  30000.00 |         4 |
+|  5 | 2024-10-05 | P005  |       105 |     15 |  45000.00 |         5 |
++----+------------+-------+-----------+--------+-----------+-----------+
+5 rows in set (0.011 sec)
