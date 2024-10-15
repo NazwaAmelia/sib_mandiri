@@ -1,0 +1,31 @@
+SELECT * FROM produk ORDER BY harga_beli DESC LIMIT 2;
+| id | kode | nama           | harga_beli | harga_jual | stok | min_stok |
+| -- | ---- | -------------- | ---------- | ---------- | ---- | -------- |
+| 8  | C008 | Camera         | 4000000.00 | 5500000.00 | 3    | 2        |
+| 2  | M002 | Kulkas 2 Pintu | 3000000.00 | 4500000.00 | 3    | 2        |
+
+SELECT * FROM produk ORDER BY harga_beli ASC LIMIT 1;
+| id | kode | nama     | harga_beli | harga_jual | stok | min_stok |
+| -- | ---- | -------- | ---------- | ---------- | ---- | -------- |
+| 9  | K009 | Keyboard | 300000.00  | 500000.00  | 5    | 2        |
+
+SELECT * FROM produk ORDER BY stok DESC LIMIT 1;
+| id | kode | nama    | harga_beli | harga_jual | stok | min_stok |
+| -- | ---- | ------- | ---------- | ---------- | ---- | -------- |
+| 4  | L004 | AC 1 PK | 2800000.00 | 4000000.00 | 10   | 3        |
+
+SELECT * FROM produk ORDER BY stok ASC LIMIT 2;
+| id | kode | nama           | harga_beli | harga_jual | stok | min_stok |
+| -- | ---- | -------------- | ---------- | ---------- | ---- | -------- |
+| 7  | M007 | Mixer          | 500000.00  | 800000.00  | 2    | 1        |
+| 2  | M002 | Kulkas 2 Pintu | 3000000.00 | 4500000.00 | 3    | 2        |
+
+SELECT * FROM pelanggan ORDER BY tgl_lahir DESC LIMIT 1;
+| id | kode  | nama | tmp_lahir | tgl_lahir  | jk | c6 |
+| -- | ----- | ---- | --------- | ---------- | -- | -- |
+| 9  | PL009 | Agus | Solo      | 2002-06-22 | L  |    |
+
+SELECT * FROM pelanggan ORDER BY tgl_lahir ASC LIMIT 1;
+| id | kode  | nama  | tmp_lahir | tgl_lahir  | jk |
+| -- | ----- | ----- | --------- | ---------- | -- |
+| 3  | PL003 | Yosef | Surabaya  | 1995-02-10 | L  |

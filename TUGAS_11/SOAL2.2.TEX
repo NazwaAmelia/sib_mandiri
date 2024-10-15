@@ -1,0 +1,46 @@
+SELECT * from produk WHERE stok=3 OR stok=10;
+| id | kode  | nama    | tmp_lahir  | tgl_lahir  | jk |
+| -- | ----- | ------- | ---------- | ---------- | -- |
+| 2  | PL002 | Amalia  | Bandung    | 1998-08-15 | P  |
+| 4  | PL004 | Tania   | Jakarta    | 1999-12-25 | P  |
+| 6  | PL006 | Sabrina | Yogyakarta | 2000-11-11 | P  |
+
+SELECT * FROM produk WHERE harga_jual < 5000000 AND harga_jual > 500000;
+| id | kode | nama                 | harga_beli | harga_jual | stok | min_stok |
+| -- | ---- | -------------------- | ---------- | ---------- | ---- | -------- |
+| 1  | K001 | Televisi LED 32 Inch | 2500000.00 | 3500000.00 | 5    | 2        |
+| 2  | M002 | Kulkas 2 Pintu       | 3000000.00 | 4500000.00 | 3    | 2        |
+| 3  | A003 | Mesin Cuci           | 1500000.00 | 2000000.00 | 4    | 2        |
+| 4  | L004 | AC 1 PK              | 2800000.00 | 4000000.00 | 10   | 3        |
+| 5  | P005 | Smartphone           | 1200000.00 | 1800000.00 | 8    | 4        |
+| 6  | T006 | Tablet               | 1000000.00 | 1500000.00 | 6    | 3        |
+| 7  | M007 | Mixer                | 500000.00  | 800000.00  | 2    | 1        |
+| 10 | P010 | Printer              | 700000.00  | 1200000.00 | 4    | 2        |
+
+SELECT * FROM produk WHERE min_stok > stok;
+
+SELECT * FROM pelanggan ORDER BY tgl_lahir DESC;
+| id | kode  | nama    | tmp_lahir  | tgl_lahir  | jk |
+| -- | ----- | ------- | ---------- | ---------- | -- |
+| 9  | PL009 | Agus    | Solo       | 2002-06-22 | L  |
+| 5  | PL005 | Ryan    | Medan      | 2001-03-05 | L  |
+| 6  | PL006 | Sabrina | Yogyakarta | 2000-11-11 | P  |
+| 1  | PL001 | Satria  | Jakarta    | 2000-05-20 | L  |
+| 4  | PL004 | Tania   | Jakarta    | 1999-12-25 | P  |
+| 2  | PL002 | Amalia  | Bandung    | 1998-08-15 | P  |
+| 7  | PL007 | Maya    | Bandung    | 1998-04-17 | P  |
+| 8  | PL008 | Yoga    | Jakarta    | 1997-07-07 | L  |
+| 10 | PL010 | Nia     | Palembang  | 1996-01-13 | P  |
+| 3  | PL003 | Yosef   | Surabaya   | 1995-02-10 | L  |
+
+SELECT * FROM pelanggan WHERE tmp_lahir = 'Jakarta' AND jk = 'P';
+| id | kode  | nama  | tmp_lahir | tgl_lahir  | jk |
+| -- | ----- | ----- | --------- | ---------- | -- |
+| 4  | PL004 | Tania | Jakarta   | 1999-12-25 | P  |
+
+SELECT * FROM pelanggan WHERE id IN (2, 4, 6);
+| id | kode  | nama    | tmp_lahir  | tgl_lahir  | jk |
+| -- | ----- | ------- | ---------- | ---------- | -- |
+| 2  | PL002 | Amalia  | Bandung    | 1998-08-15 | P  |
+| 4  | PL004 | Tania   | Jakarta    | 1999-12-25 | P  |
+| 6  | PL006 | Sabrina | Yogyakarta | 2000-11-11 | P  |

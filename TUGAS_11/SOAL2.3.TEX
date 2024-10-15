@@ -1,0 +1,43 @@
+SELECT * FROM produk WHERE kode LIKE 'K%' OR kode LIKE 'M%';
+| id | kode | nama                 | harga_beli | harga_jual | stok | min_stok |
+| -- | ---- | -------------------- | ---------- | ---------- | ---- | -------- |
+| 1  | K001 | Televisi LED 32 Inch | 2500000.00 | 3500000.00 | 5    | 2        |
+| 2  | M002 | Kulkas 2 Pintu       | 3000000.00 | 4500000.00 | 3    | 2        |
+| 7  | M007 | Mixer                | 500000.00  | 800000.00  | 2    | 1        |
+| 9  | K009 | Keyboard             | 300000.00  | 500000.00  | 5    | 2        |
+
+SELECT * FROM produk WHERE kode NOT LIKE 'M%';
+| id | kode | nama                 | harga_beli | harga_jual | stok | min_stok |
+| -- | ---- | -------------------- | ---------- | ---------- | ---- | -------- |
+| 1  | K001 | Televisi LED 32 Inch | 2500000.00 | 3500000.00 | 5    | 2        |
+| 3  | A003 | Mesin Cuci           | 1500000.00 | 2000000.00 | 4    | 2        |
+| 4  | L004 | AC 1 PK              | 2800000.00 | 4000000.00 | 10   | 3        |
+| 5  | P005 | Smartphone           | 1200000.00 | 1800000.00 | 8    | 4        |
+| 6  | T006 | Tablet               | 1000000.00 | 1500000.00 | 6    | 3        |
+| 8  | C008 | Camera               | 4000000.00 | 5500000.00 | 3    | 2        |
+| 9  | K009 | Keyboard             | 300000.00  | 500000.00  | 5    | 2        |
+| 10 | P010 | Printer              | 700000.00  | 1200000.00 | 4    | 2        |
+
+SELECT * FROM produk WHERE nama LIKE '%televisi%' OR nama LIKE '%TV%';
+| id | kode | nama                 | harga_beli | harga_jual | stok | min_stok |
+| -- | ---- | -------------------- | ---------- | ---------- | ---- | -------- |
+| 1  | K001 | Televisi LED 32 Inch | 2500000.00 | 3500000.00 | 5    | 2        |
+
+SELECT * FROM pelanggan WHERE nama LIKE '%SA%';
+| id | kode  | nama    | tmp_lahir  | tgl_lahir  | jk | c6 |
+| -- | ----- | ------- | ---------- | ---------- | -- | -- |
+| 1  | PL001 | Satria  | Jakarta    | 2000-05-20 | L  |    |
+| 6  | PL006 | Sabrina | Yogyakarta | 2000-11-11 | P  |    |
+
+SELECT * FROM pelanggan WHERE tmp_lahir <> 'Jakarta' AND nama LIKE '%yo%';
+| id | kode  | nama  | tmp_lahir | tgl_lahir  | jk |
+| -- | ----- | ----- | --------- | ---------- | -- |
+| 3  | PL003 | Yosef | Surabaya  | 1995-02-10 | L  |
+
+SELECT * FROM pelanggan WHERE nama LIKE '_A%';
+| id | kode  | nama    | tmp_lahir  | tgl_lahir  | jk |
+| -- | ----- | ------- | ---------- | ---------- | -- |
+| 1  | PL001 | Satria  | Jakarta    | 2000-05-20 | L  |
+| 4  | PL004 | Tania   | Jakarta    | 1999-12-25 | P  |
+| 6  | PL006 | Sabrina | Yogyakarta | 2000-11-11 | P  |
+| 7  | PL007 | Maya    | Bandung    | 1998-04-17 | P  |
