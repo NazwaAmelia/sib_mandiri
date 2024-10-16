@@ -1,0 +1,49 @@
+SELECT id, nama, stok,
+       CASE
+           WHEN stok <= min_stok THEN 'Segera Belanja'
+           ELSE 'Stok Aman'
+       END AS status_stok
+FROM produk;
+| id | nama        | stok | status_stok    |
+| -- | ----------- | ---- | -------------- |
+| 1  | Kulkas      | 5    | Stok Aman      |
+| 2  | Televisi    | 8    | Stok Aman      |
+| 3  | Kipas Angin | 10   | Stok Aman      |
+| 4  | Handphone   | 12   | Stok Aman      |
+| 5  | AC          | 2    | Segera Belanja |
+| 6  | Kompor      | 6    | Stok Aman      |
+| 7  | Oven        | 4    | Stok Aman      |
+
+SELECT id, nama, (YEAR(CURDATE()) - YEAR(tgl_lahir)) AS umur,
+       CASE
+           WHEN (YEAR(CURDATE()) - YEAR(tgl_lahir)) < 17 THEN 'Muda'
+           WHEN (YEAR(CURDATE()) - YEAR(tgl_lahir)) BETWEEN 17 AND 55 THEN 'Dewasa'
+           ELSE 'Tua'
+       END AS kategori_umur
+FROM pelanggan;
+| id | nama | umur | kategori_umur |
+| -- | ---- | ---- | ------------- |
+| 1  | Andi | 26   | Dewasa        |
+| 2  | Budi | 44   | Dewasa        |
+| 3  | Cici | 34   | Dewasa        |
+| 4  | Dina | 39   | Dewasa        |
+| 5  | Eko  | 29   | Dewasa        |
+| 6  | Fina | 36   | Dewasa        |
+| 7  | Gina | 22   | Dewasa        |
+
+SELECT id, kode, nama,
+       CASE
+           WHEN kode = 'TV01' THEN 'DVD Player'
+           WHEN kode = 'K001' THEN 'Rice Cooker'
+           ELSE 'Tidak Ada'
+       END AS bonus
+FROM produk;
+| id | kode | nama        | bonus       |
+| -- | ---- | ----------- | ----------- |
+| 1  | K001 | Kulkas      | Rice Cooker |
+| 2  | TV01 | Televisi    | DVD Player  |
+| 3  | K002 | Kipas Angin | Tidak Ada   |
+| 4  | HP01 | Handphone   | Tidak Ada   |
+| 5  | AC01 | AC          | Tidak Ada   |
+| 6  | K003 | Kompor      | Tidak Ada   |
+| 7  | OV01 | Oven        | Tidak Ada   |

@@ -1,0 +1,48 @@
+SELECT * FROM produk WHERE harga_beli * stok > 20000000;
+| id | kode | nama      | harga_beli | harga_jual | stok | min_stok |
+| -- | ---- | --------- | ---------- | ---------- | ---- | -------- |
+| 1  | K001 | Kulkas    | 5000000    | 7000000    | 5    | 2        |
+| 2  | TV01 | Televisi  | 4000000    | 6000000    | 8    | 3        |
+| 4  | HP01 | Handphone | 3000000    | 4500000    | 12   | 6        |
+
+SELECT id, kode, nama, stok, min_stok, (stok - min_stok) AS selisih_stok FROM produk;
+| id | kode | nama        | stok | min_stok | selisih_stok |
+| -- | ---- | ----------- | ---- | -------- | ------------ |
+| 1  | K001 | Kulkas      | 5    | 2        | 3            |
+| 2  | TV01 | Televisi    | 8    | 3        | 5            |
+| 3  | K002 | Kipas Angin | 10   | 5        | 5            |
+| 4  | HP01 | Handphone   | 12   | 6        | 6            |
+| 5  | AC01 | AC          | 2    | 2        | 0            |
+| 6  | K003 | Kompor      | 6    | 3        | 3            |
+| 7  | OV01 | Oven        | 4    | 2        | 2            |
+
+SELECT SUM(harga_beli * stok) AS total_asset FROM produk;
+| total_asset |
+| ----------- |
+| 114500000   |
+
+SELECT * FROM pelanggan WHERE YEAR(tgl_lahir) BETWEEN 1999 AND 2004;
+| id | kode  | nama | tmp_lahir | tgl_lahir  | jk | kartu_iuran | kartu_diskon |
+| -- | ----- | ---- | --------- | ---------- | -- | ----------- | ------------ |
+| 7  | PL007 | Gina | Jakarta   | 2002-02-25 | P  | 110000      | 6.00         |
+
+SELECT * FROM pelanggan WHERE YEAR(tgl_lahir)=1998;
+| id | kode  | nama | tmp_lahir | tgl_lahir  | jk | kartu_iuran | kartu_diskon |
+| -- | ----- | ---- | --------- | ---------- | -- | ----------- | ------------ |
+| 1  | PL001 | Andi | Jakarta   | 1998-08-15 | L  | 100000      | 5.00         |
+
+SELECT * FROM pelanggan WHERE MONTH(tgl_lahir)=08;
+| id | kode  | nama | tmp_lahir | tgl_lahir  | jk | kartu_iuran | kartu_diskon |
+| -- | ----- | ---- | --------- | ---------- | -- | ----------- | ------------ |
+| 1  | PL001 | Andi | Jakarta   | 1998-08-15 | L  | 100000      | 5.00         |
+
+SELECT nama, tmp_lahir, tgl_lahir, (YEAR(CURDATE()) - YEAR(tgl_lahir)) AS umur FROM pelanggan;
+| nama | tmp_lahir  | tgl_lahir  | umur |
+| ---- | ---------- | ---------- | ---- |
+| Andi | Jakarta    | 1998-08-15 | 26   |
+| Budi | Bandung    | 1980-01-12 | 44   |
+| Cici | Jakarta    | 1990-03-05 | 34   |
+| Dina | Surabaya   | 1985-11-22 | 39   |
+| Eko  | Medan      | 1995-06-10 | 29   |
+| Fina | Yogyakarta | 1988-04-18 | 36   |
+| Gina | Jakarta    | 2002-02-25 | 22   |

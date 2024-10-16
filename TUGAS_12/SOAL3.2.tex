@@ -1,0 +1,39 @@
+SELECT COUNT(*) AS jumlah_pelanggan FROM pelanggan WHERE YEAR(tgl_lahir) = 1998;
+| jumlah_pelanggan |
+| ---------------- |
+| 1                |
+
+SELECT COUNT(*) AS jumlah_pelanggan FROM pelanggan WHERE tmp_lahir = 'Jakarta' AND jk = 'P';
+| jumlah_pelanggan |
+| ---------------- |
+| 2                |
+
+SELECT SUM(stok) AS total_stok FROM produk WHERE harga_jual < 10000;
+| total_stok |
+| ---------- |
+| null       |
+
+SELECT COUNT(*) AS jumlah_produk FROM produk WHERE kode LIKE 'K%';
+| jumlah_produk |
+| ------------- |
+| 3             |
+
+SELECT AVG(harga_jual) AS rata_harga_jual FROM produk WHERE harga_jual > 1000000;
+| rata_harga_jual |
+| --------------- |
+| 5600000.0000    |
+
+SELECT MAX(stok) AS stok_terbesar FROM produk;
+| stok_terbesar |
+| ------------- |
+| 12            |
+
+SELECT COUNT(*) AS produk_kurang_stok FROM produk WHERE stok < min_stok;
+| produk_kurang_stok |
+| ------------------ |
+| 0                  |
+
+SELECT SUM(harga_beli * stok) AS total_asset FROM produk;
+| total_asset |
+| ----------- |
+| 114500000   |
