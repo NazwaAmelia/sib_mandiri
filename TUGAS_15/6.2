@@ -1,0 +1,65 @@
+Trigger
+1.	Buatlah bisnis proses pembayaran dengan menggunakan trigers, dengan skenario sebagai berikut :
+- pelanggan memesan didalam table pesanan 
+- dilanjutkan dengan proses pembayaran di table pembayaran
+- didalam table pembayaran tambahkan kolom status_pembayaran
+- jika pesanan sudah dibayar maka status pembayaran akan berubah menjadi lunas 
+1. Pelanggan memesan didalam table pesanan
+SELECT * FROM pesanan;
++----+--------------+------------+-------------+
+| id | pelanggan_id | tanggal    | total       |
++----+--------------+------------+-------------+
+|  1 |            1 | 2024-10-01 | 10200000.00 |
+|  2 |            2 | 2024-10-02 |  2040000.00 |
++----+--------------+------------+-------------+
+Didalam table pembayaran tambahkan kolom status_pembayaran
+ALTER TABLE pembayaran ADD status_pembayaran varchar(25);
+INSERT INTO pembayaran (no_kuitansi, tanggal, jumlah, ke, pesanan_id)
+    -> VALUES
+    -> ('KWI001', '2024-10-02', 10200000, 1, 1),
+    -> ('KWI002', '2024-10-02', 2000000, 1, 2);
+SELECT * FROM pembayaran;
++----+-------------+------------+-------------+----+------------+-------------------+
+| id | no_kuitansi | tanggal    | jumlah      | ke | pesanan_id | status_pembayaran |
++----+-------------+------------+-------------+----+------------+-------------------+
+|  1 | KWI001      | 2024-10-02 | 10200000.00 |  1 |          1 | Belum Lunas       |
+|  2 | KWI002      | 2024-10-02 |  2000000.00 |  1 |          2 | Belum Lunas       |
++----+-------------+------------+-------------+----+------------+-------------------+
+2. Dilanjutkan dengan proses pembayaran di table pembayaran
+DELIMITER $$
+CREATE TRIGGER cek_pembayaran BEFORE INSERT ON pembayaran
+FOR EACH ROW
+BEGIN
+DECLARE total_bayar DECIMAL(10, 2);
+DECLARE total_pesanan DECIMAL(10, 2);
+SELECT SUM(jumlah) INTO total_bayar FROM pembayaran WHERE pesanan_id = NEW.pesanan_id;
+SELECT total INTO total_pesanan FROM pesanan WHERE id = NEW.pesanan_id;
+4. Jika pesanan sudah dibayar maka status pembayaran akan berubah menjadi lunas
+IF total_bayar + NEW.jumlah >= total_pesanan THEN
+SET NEW.status_pembayaran = 'Lunas';
+END IF;
+END $$
+DELIMITER ;
+// Menambahkan data pada tabel pembayaran
+INSERT INTO pembayaran (no_kuitansi, tanggal, jumlah, ke, pesanan_id, status_pembayaran)
+VALUES ('KWI001', '2023-03-03', 200000, 1, 1);
+
+2.	Buatlah Stored Procedure dengan nama kurangi_stok untuk mengurangi stok produk. Stok berkurang sesuai dengan jumlah pesanan produk.
+-- Mengurangi stok produk dengan id=1 sebanyak 5
+CALL kurangi_stok(1, 5);
+-- memerikasa apakah pengurangan stok berhasil
+SELECT * FROM produk;
++----+--------+----------+------+----------+------------+-------------+
+| id | kode   | nama     | stok | min_stok | harga_beli | harga_jual  |
++----+--------+----------+------+----------+------------+-------------+
+|  1 | PRD001 | Laptop   |   45 |       10 | 8000000.00 | 10000000.00 |
+|  2 | PRD002 | Mouse    |  100 |       20 |  100000.00 |   200000.00 |
+|  3 | PRD003 | Keyboard |   75 |       15 |  150000.00 |   300000.00 |
+|  4 | PRD004 | Monitor  |   30 |        5 | 1500000.00 |  2500000.00 |
+|  5 | PRD005 | Printer  |   20 |        5 | 1000000.00 |  1500000.00 |
++----+--------+----------+------+----------+------------+-------------+
+5 rows in set (0.013 sec)
+3.	Buatlah Trigger dengan nama trig_kurangi_stok yang akan mengurangi stok produk jika terjadi transaksi pesanan oleh pelanggan (memanggil stored procedure kurangi_stok soal no 2).
+Trigger ini aktif setelah trigger after_pesanan_items_insert (trigger pada contoh 3).
+CREATE TRIGGER ...
+
